@@ -22,8 +22,6 @@ const validHookNames = new Set([
   'utils:onboarding-survey-url',
   'component:org-auth-view',
   'component:org-members-view',
-  'sidebar:bottom-items',
-  'sidebar:item-label',
 
   // Additional settings
   'settings:organization-navigation',
@@ -34,6 +32,8 @@ const validHookNames = new Set([
   'organization:header',
   'sidebar:help-menu',
   'sidebar:organization-dropdown-menu',
+  'sidebar:bottom-items',
+  'sidebar:item-label',
 
   // Used to provide a component for integration features.
   'integrations:feature-gates',
