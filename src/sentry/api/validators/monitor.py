@@ -63,6 +63,7 @@ class CronJobValidator(serializers.Serializer):
             return attrs
 
         if schedule_type == ScheduleType.INTERVAL:
+            # type: [int freq, str interval]
             if not isinstance(value, list):
                 raise ValidationError('Invalid value for schedule_type')
             if not isinstance(value[0], int):
@@ -70,6 +71,7 @@ class CronJobValidator(serializers.Serializer):
             if value[1] not in INTERVAL_NAMES:
                 raise ValidationError('Invalid value for schedlue interval')
         elif schedule_type == ScheduleType.CRONTAB:
+            # type: str schedule
             if not isinstance(value, six.string_types):
                 raise ValidationError('Invalid value for schedule_type')
             value = value.strip()

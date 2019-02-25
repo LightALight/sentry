@@ -19,7 +19,7 @@ from sentry.db.models import (
     sane_repr,
 )
 
-SCHEDULE_FREQ_MAP = {
+SCHEDULE_INTERVAL_MAP = {
     'year': rrule.YEARLY,
     'month': rrule.MONTHLY,
     'week': rrule.WEEKLY,
@@ -39,9 +39,10 @@ def get_next_schedule(base_datetime, schedule_type, schedule):
         next_schedule = itr.get_next(datetime)
     elif schedule_type == ScheduleType.INTERVAL:
         freq, interval = schedule
+        # frequency is the "number of units" and interval as "unit name"
         rule = rrule.rrule(
-            freq=SCHEDULE_FREQ_MAP[freq],
-            interval=interval,
+            freq=freq,
+            interval=SCHEDULE_INTERVAL_MAP[interval],
             dtstart=base_datetime,
             count=2)
         if rule[0] > base_datetime:
